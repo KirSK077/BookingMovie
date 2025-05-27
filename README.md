@@ -38,3 +38,5 @@ npm run dev
 ```
 
 Откройте свой браузер и перейдите на страницу `http://localhost:5173`, чтобы просмотреть приложение.
+
+Ссылка на githubPage:[Идем в кино](https://kirsk077.github.io/BookingMovie/)
