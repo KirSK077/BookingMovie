@@ -1,0 +1,401 @@
+.block {
+  position: relative;
+  background-color: #EAE9EBF2;
+}
+
+.block__line::before {
+  position: absolute;
+  left: 60px;
+  content: "";
+  display: block;
+  height: 100%;
+  border-right: 1px solid #BC95D6;
+  border-left: 1px solid #BC95D6;
+}
+
+.line__trimmed-top::before {
+  top: 33px;
+  height: calc(100% - 33px);
+}
+
+.block__title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #63536C;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 22px;
+  padding-left: 105px;
+  padding-top: 34px;
+  padding-bottom: 34px;
+  cursor: pointer;
+}
+
+.block__title::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  left: 39px;
+  background: url(../Img/accordion-btn-before.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.block__title::after {
+  content: "";
+  position: absolute;
+  right: 44px;
+  display: inline-block;
+  width: 24px;
+  height: 16px;
+  background: url(../Img/accordion-btn-after.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.block__content {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  padding-left: 105px;
+  padding-right: 35px;
+  animation-name: show-block;
+}
+
+.block__config-title {
+  font-size: 16px;
+}
+
+.block__hall-list {
+  margin-bottom: 15px;
+}
+
+.block__hall-list__el {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-top: 5px;
+  gap: 5px;
+}
+
+.block__hall-list__el::before {
+  content: "– ";
+}
+
+.block__delete-btn {
+  appearance: none;
+  border: none;
+  border-radius: 3px;
+  width: 20px;
+  height: 20px;
+  background-image: url(../Img/delete-btn.svg);
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.block__hall__btns {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 35px;
+  align-items: center;
+}
+
+.block__hall-btn, .block__hall-btn_active {
+  height: 42px;
+  padding: 11px 19px;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 3px;
+  box-shadow: 0px 3px 3px 0px rgba(34, 60, 80, 0.24);
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.block__hall-btn_active {
+  height: 46px;
+  padding: 13px 20px;
+  background-color: rgb(255, 255, 255);
+  font-weight: 900;
+}
+
+.block__input-rows-cols-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 50px;
+}
+
+.block__input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.block__input__label {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #848484;
+}
+
+.block__input {
+  appearance: none;
+  outline: none;
+  width: 100px;
+  height: 42px;
+  border: 1px solid #B7B7B7;
+  padding: 8px 9px;
+  font-size: 16px;
+  color: #757575;
+}
+
+.block__rows-cols-mult {
+  align-self: flex-end;
+  padding-bottom: 10px;
+  font-size: 18px;
+  color: #848484;
+  text-transform: lowercase;
+}
+
+.block__seats-type-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.block__seats__description {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 14px;
+  color: #848484;
+}
+
+.standart, .vip, .disabled {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.standart {
+  background-color: #C4C4C4;
+  border: 1px solid #393939;
+}
+
+.vip {
+  background-image: url(../Img/vip-seat.svg);
+}
+
+.disabled {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #C4C4C4;
+}
+
+.seat_legend {
+  cursor: default;
+}
+
+.block__config-title__seats-grid {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #848484;
+}
+
+.block__seats-grid__container {
+  margin-top: 15px;
+  width: 100%;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 15px;
+  border: 1px solid #000;
+  margin-bottom: 35px;
+}
+
+.block__seats-grid__title {
+  font-size: 16px;
+  padding-left: 19px;
+  letter-spacing: 19px;
+  text-transform: uppercase;
+}
+
+.block__seats-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 25px;
+  margin-bottom: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.block__pricing {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.block__films-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.block__films-list__film-el {
+  width: 259px;
+  min-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #0000004D;
+  cursor: pointer;
+}
+
+.block__films-box__film-poster {
+  width: 40px;
+  height: 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.block__films-list__film-el__film {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block__films-list__film-el__film-text {
+  padding-left: 10px;
+}
+
+.block__films-list__film-el__film-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.block__films-list__film-el__film-duration {
+  font-size: 14px;
+  color: #000000B2;
+}
+
+.delete-film {
+  align-self: flex-end;
+}
+
+.block__seances-container {
+  max-width: 816px;
+  margin-top: 50px;
+  padding-right: 35px;
+  padding-left: 35px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 50px;
+}
+
+.block__seance-box {
+  margin-top: 35px;
+}
+
+.block__hall-title {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.block__seance-schedule {
+  max-width: 720px;
+  height: 60px;
+  border: 1px solid #848484;
+}
+
+.block__info, .block__error {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.block__info {
+  color: #0e7a81;
+}
+
+.block__error {
+  color: #FF0000;
+}
+
+.sales__title {
+  margin-bottom: 25px;
+}
+
+.sales__open-text {
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .block__line::before {
+    display: none;
+  }
+
+  .block__title {
+    padding-left: 66px;
+  }
+
+  .block__title::before {
+    left: 20px;
+    width: 22px;
+    height: 22px;
+    background-image: url(../Img/accordion-btn-before-sm.svg);
+  }
+
+  .block__title::after {
+    right: 22px;
+  }
+
+  .block__content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .block__seances-container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .standart, .vip, .disabled {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .block__title {
+    font-size: 18px;
+    padding-right: 50px;
+  }
+
+  .block__seats-grid {
+    gap: 6px;
+  }
+
+  .standart, .vip, .disabled {
+    width: 16px;
+    height: 16px;
+  }
+}

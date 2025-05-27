@@ -1,0 +1,95 @@
+.block__seance-schedule {
+  position: relative; 
+  height: 50px; 
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.block__seance-schedule__timeline {
+  position: absolute;
+  bottom: -30px;  
+  left: 0;
+  right: 0;
+  height: 20px;
+  font-size: 12px;
+  color: #848484;
+  display: flex;
+  gap: 5px;
+}
+
+.block__seance-schedule-seance-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 20px;
+}
+
+.block__seance-schedule-seance-el {
+  position: absolute;
+  height: 40px;
+  border: 1px solid #0000004D;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  user-select: none;
+  line-height: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: grab;
+}
+
+.block__trash {
+  position: absolute;
+  background-image: url(../Img/trash_bin_icon.svg);
+  left: -45px;
+  width: 40px;
+  height: 40px;
+}
+.block__trash_hidden {
+  display: none;
+}
+
+.block__seance-schedule__time-value {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 5px;
+}
+
+.block__seance-schedule__time-value::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 6px;
+  background-image: url(../Img/time-mark.svg);
+  background-size: cover;
+  top: -10px;
+  left: 15px;
+}
+
+@media(max-width: 520px) {
+  .block__seance-schedule-seance-el{
+    font-size: 10px;
+  }
+
+  .block__seance-schedule__time-value {
+    transform: rotate(270deg);
+    transform-origin:left;
+    top: 20px;
+  }
+
+  .block__seance-schedule__time-value::before {
+    width: 6px;
+    height: 3px;
+    top: 5px;
+    left: 31px;
+  }
+  
+  .block__trash {
+    left: -27px;
+    top: 15px;
+    width: 25px;
+    height: 25px;
+  }
+}

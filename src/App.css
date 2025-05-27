@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+  font-family: "Consolas";
+  src: local("Consolas"),
+  url("/src/components/fonts/consolas.ttf") format("truetype");
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container_full-h {
+  height: 100%;
+}
+
+.mode-client {
+  background-image: url(../src/components/Img/Client_Background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.mode-admin {
+  background-image: url(../src/components/Img/Admin_Background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+.container__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* .container__col-lg-2 {
+  background-color: lightgray;
+} */
+
+.container__col-lg-8 {
+  flex: 0 0 auto;
+  width: 70%;
+}
+
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-right: 15px;
+}
+
+.header__box_client {
+  padding-left: 15px;
+}
+
+.header__box_admin {
+  padding-left: 95px;
+}
+
+.header__client_thick-letter {
+  font-size: 34px;
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.header__client_thin-letter {
+  font-weight: 100;
+}
+
+.header__admin {
+  font-size: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.header__admin_hidden {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .header__box_admin {
+    margin: 0 auto;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  /* .container__col-lg-2 {
+    flex: 0 0 auto;
+    width: 0;
+  } */
+  .container__col-lg-8 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}

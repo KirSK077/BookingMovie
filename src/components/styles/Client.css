@@ -1,0 +1,412 @@
+.block__dates {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+
+.block__date-btn, .block__date-btn_active, .btn__back, .btn__forward {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 124px;
+  height: 48px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #FFFFFFE5;
+  border-radius: 3px;
+  box-shadow: 0px 3px 3px 0px rgba(34, 60, 80, 0.24);
+  cursor: pointer;
+}
+
+
+@keyframes stretching-btn {
+  from {
+    width: 124px;
+  }
+  to {
+    width: 240px;
+  }
+}
+
+.block__date-btn_active {
+  width: 240px;
+  height: 52px;
+  background-color: #FFFFFF;
+  animation: stretching-btn 0.3s;
+  animation-timing-function: ease-in;
+}
+
+.btn__back, .btn__forward {
+  font-family: "Consolas", sans-serif;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.block__date__row {
+  display: flex;
+  align-items: start;
+}
+
+.block__date__col {
+  display: flex;
+  flex-direction: column;
+}
+
+.block__date__date-val, .block__date__day-val {
+  text-align: left;
+}
+
+.weekend {
+  color: #FF0000;
+}
+
+.block__films-container {
+  max-width: 990px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+
+.block__films-container__film {
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+  margin-bottom: 30px;
+  padding: 15px;
+  border-radius: 2px;
+  background-color: #F1EBE6F2;
+}
+
+.block__films-container__film__poster-text {
+  display: flex;
+}
+
+.block__films-container__film__poster {
+  width: 125px;
+  height: 175px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.block__films-container__film__text {
+  margin-left: 15px;
+  position: relative;
+}
+
+.block__films-container__film__title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.block__films-container__film__title::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: -14px;
+  width: 6px;
+  height: 16px;
+  background-image: url(../Img/film-title-before.svg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.block__films-container__film__description {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.block__films-container__film__duration-origin {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.block__films-container__halls-seances {
+  display: flex;
+  flex-direction: column;
+}
+
+.block__films-container__halls-seances__schedule:not(:last-child) {
+  margin-bottom: 27px;
+}
+
+.block__films-container__halls-seances__hall-name {
+  font-weight: 700;
+}
+
+.block__films-container__halls-seances__seance-times-box {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.block__films-container__halls-seances__seance-time, .block__films-container__halls-seances__seance-time-disabled {
+  width: 53px;
+  height: 33px;
+  padding-top: 7px;
+  padding-left: 7px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0px 3px 3px 0px rgba(34, 60, 80, 0.24);
+  cursor: pointer;
+}
+
+.block__films-container__halls-seances__seance-time:active {
+  background-color: #d4dddd;
+  border: 1px solid #d4dddd;
+}
+
+.block__films-container__halls-seances__seance-time-disabled {
+  background-color: #858585;
+  cursor: default;
+}
+
+.block__hall-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #F1EBE6F2;
+  padding-bottom: 30px;
+  border-radius: 2px;
+}
+
+.block__hall-container__info {
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+}
+
+.block__hall-container__info__film-title, .block__hall-container__info__hall-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 11px;
+}
+
+.block__hall-container__info__film-time {
+  font-weight: 300;
+  margin-bottom: 11px;
+}
+
+.block__hall-grid-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px;
+  background-color: #171D24;
+}
+
+.block__hall-grid__screen {
+  position: relative;
+  width: 280px;
+  height: 25px;
+  color: #979797;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.block__hall-grid__screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../Img/screen.svg");
+  background-size: cover;
+}
+
+.block__hall-grid {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: 5px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.block__hall-grid__legend {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.seat-standart, .seat-vip, .seat-disabled, .seat-taken, .seat-selected {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.seat-standart {
+  background-color: #FFFFFF;
+  border: 1px solid #525252;
+}
+
+.seat-vip {
+  background-color: #F9953A;
+  border: 1px solid #525252;
+}
+
+.seat-disabled {
+  border: none;
+  background-color: #171D24;
+  cursor: default;
+}
+
+.seat-taken {
+  background-color: #171D24;
+  border: 1px solid #525252;
+  cursor: default;
+}
+
+.seat-selected {
+  width: 24px;
+  height: 24px;
+  background-color: #25C4CE;
+  border: 1px solid #525252;
+  box-shadow: 0px 0px 4px 0px #16A6AF;
+}
+
+.seat_legend {
+  cursor: default;
+}
+
+.form__submit-btn {
+  padding-left: 57px;
+  padding-right: 57px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  align-self: center;
+  background-color: #16A6AF;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid #16A6AF;
+  border-radius: 3px;
+  box-shadow: 0px 3px 3px 0px rgba(34, 60, 80, 0.24);
+  cursor: pointer;
+}
+
+.block__booking-container {
+  position: relative;
+}
+
+.block__booking-container__title {
+  position: relative;
+  margin-bottom: 5px;
+  background-color: #F1EBE6F2;
+}
+
+.block__booking-container__title-text {
+  width: 100%;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #C76F00;
+}
+
+.block__booking-container__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #F1EBE6F2;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+}
+
+.block__booking-container__content-text {
+  margin-bottom: 10px;
+}
+
+.block__booking-container__content-value {
+  font-weight: 700;
+}
+
+.block__booking-container__content-hint {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.block__booking-btn__qr-code {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.block__booking-container__title::before, .block__booking-container__content::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 3px;
+  top: -3px;
+  left: 0;
+  background-image: url('../Img/dot_before.svg');
+}
+
+.block__booking-container__title::after, .block__booking-container__content::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 3px;
+  bottom: -3px;
+  left: 0;
+  background-image: url('../Img/dot_after.svg');
+}
+
+@media (max-width: 576px) {
+  .block__date-btn, .block__date-btn_active, .btn__back, .btn__forward {
+    width: 60px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+  }
+
+  @keyframes stretching-btn {
+    from {
+      width: 60px;
+    }
+    to {
+      width: 120px;
+    }
+  }
+
+  .block__date-btn_active {
+    width: 120px;
+    height: 52px;
+    animation: stretching-btn 0.3s;
+    animation-timing-function: ease-in;
+  }
+
+  .btn__back, .btn__forward {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .block__date-btn, .block__date-btn_active, .btn__back, .btn__forward {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
