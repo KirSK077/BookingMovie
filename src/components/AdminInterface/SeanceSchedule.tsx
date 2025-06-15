@@ -78,24 +78,29 @@ const SeanceSchedule: React.FC<SeanceScheduleProps> = ({ hall, seances, films, c
     if ((x < rect.left - 5 && x > rect.left - 50) && (y > rect.top - 10 && y < rect.bottom + 10)) {
       setDelSeanceVisible(true);
     }
+    // Clear trashId to hide basket icon if drag ends without drop
+    setTrashId(null);
   };
 
+  // Confirm deletion of seance and hide basket icon
   const handleDelSeance = () => {
     if (selectedSeance) {
       onDeleteSeance(selectedSeance.id);
+      // Hide basket icon after deletion
       setTrashId(null);
     }
     
     setDelSeanceVisible(false);
     setSelectedSeance(null);
     setSelectedFilm(null);
-    
   };
 
+  // Cancel deletion and hide basket icon
   const handleCancel = () => {
     setDelSeanceVisible(false);
     setSelectedSeance(null);
     setSelectedFilm(null);
+    // Hide basket icon on cancel
     setTrashId(null);
   };
 
@@ -143,7 +148,10 @@ const SeanceSchedule: React.FC<SeanceScheduleProps> = ({ hall, seances, films, c
     <div className="block__seance-schedule"
       ref={scheduleRef}
       onDragOver={(e) => e.preventDefault()}
-      onDrop={onDrop}
+      onDrop={(e) => {
+        onDrop(e);
+        setTrashId(null);
+      }}
     >
       {/* Сеансы на шкале времени */}
       <div className="block__seance-schedule-seance-list">

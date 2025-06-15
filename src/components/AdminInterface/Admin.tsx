@@ -102,6 +102,98 @@ const AdminInterface = () => {
   const [salesError, setSalesError] = useState('');
   // Конфигурация размера экрана
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+
+  // Установка активных вкладок
+  useEffect(() => {
+    if (halls.length > 0) {
+      if (activeHallIdToConfig === null) {
+        setActiveHallIdToConfig(halls[0].id);
+      }
+      if (activeHallToPricing === null) {
+        setActiveHallToPricing(halls[0].id);
+      }
+      if (activeHallToSales === null) {
+        setActiveHallIdToSales(halls[0].id);
+      }
+    }
+  }, [halls, activeHallIdToConfig, activeHallToPricing, activeHallToSales]);
+
+  // Load hall configuration when activeHallIdToConfig changes
+  useEffect(() => {
+    const loadHallConfig = async () => {
+      if (activeHallIdToConfig === null) return;
+      try {
+        const data = await BackendAPI.getAllData();
+        const hall = data.halls.find((h: Hall) => h.id === activeHallIdToConfig);
+        if (!hall) {
+          setSeatsError('Зал не найден');
+          return;
+        }
+        setRowsInput(hall.hall_rows);
+        setColsInput(hall.hall_places);
+        const initialSeats: Seat[] = [];
+        hall.hall_config.forEach((rowArr, rowIndex) => {
+          rowArr.forEach((seatTypeStr, colIndex) => {
+            const seatType = ["standart", "vip", "disabled"].includes(seatTypeStr) ? seatTypeStr as SeatType : "standart";
+            initialSeats.push({ row: rowIndex, col: colIndex, seatType });
+          });
+        });
+        setSeats(initialSeats);
+        setSeatsError('');
+      } catch (error) {
+        if (error instanceof Error) {
+          setSeatsError(error.message);
+        }
+      }
+    };
+    loadHallConfig();
+  }, [activeHallIdToConfig]);
+
+  // Load hall pricing when activeHallToPricing changes
+  useEffect(() => {
+    const loadHallPricing = async () => {
+      if (activeHallToPricing === null) return;
+      try {
+        const data = await BackendAPI.getAllData();
+        const hall = data.halls.find((h: Hall) => h.id === activeHallToPricing);
+        if (!hall) {
+          setPricingError('Зал не найден');
+          return;
+        }
+        setStandardPrice(hall.hall_price_standart);
+        setVipPrice(hall.hall_price_vip);
+        setPricingError('');
+      } catch (error) {
+        if (error instanceof Error) {
+          setPricingError(error.message);
+        }
+      }
+    };
+    loadHallPricing();
+  }, [activeHallToPricing]);
+
+  // Load hall sales open/close status when activeHallToSales changes
+  useEffect(() => {
+    const loadHallSalesStatus = async () => {
+      if (activeHallToSales === null) return;
+      try {
+        const data = await BackendAPI.getAllData();
+        const hall = data.halls.find((h: Hall) => h.id === activeHallToSales);
+        if (!hall) {
+          setSalesError('Зал не найден');
+          return;
+        }
+        setOpenCloseValue(hall.hall_open === 1 ? 1 : 0);
+        setSalesError('');
+      } catch (error) {
+        if (error instanceof Error) {
+          setSalesError(error.message);
+        }
+      }
+    };
+    loadHallSalesStatus();
+  }, [activeHallToSales]);
+  
   
   useEffect(() => {
     const fetchData = async () => {
@@ -147,14 +239,42 @@ const AdminInterface = () => {
   }
   useEffect(() => {
     if (hallToDelete !== null) {
-      handleDeleteHall();
+      const deletedHallId = hallToDelete;
+      handleDeleteHall().then(() => {
+        // After deletion, update active hall states if needed
+        if (halls.length > 0) {
+          // Find next hall id after deletion
+          const nextHall = halls.find(hall => hall.id !== deletedHallId);
+          const nextHallId = nextHall ? nextHall.id : null;
+
+          if (activeHallIdToConfig === deletedHallId) {
+            setActiveHallIdToConfig(nextHallId);
+          }
+          if (activeHallToPricing === deletedHallId) {
+            setActiveHallToPricing(nextHallId);
+          }
+          if (activeHallToSales === deletedHallId) {
+            setActiveHallIdToSales(nextHallId);
+          }
+        } else {
+          // No halls left, set active states to null
+          if (activeHallIdToConfig === deletedHallId) {
+            setActiveHallIdToConfig(null);
+          }
+          if (activeHallToPricing === deletedHallId) {
+            setActiveHallToPricing(null);
+          }
+          if (activeHallToSales === deletedHallId) {
+            setActiveHallIdToSales(null);
+          }
+        }
+      });
     }
   });
 
-  const toggleAddHall = async () => {
-    const data = await BackendAPI.getAllData();
-    setHalls(data.halls);
-    setShowAddHallForm(!showAddHallForm);
+  const toggleAddHall = (updatedHalls: Hall[]) => {
+    setHalls(updatedHalls);
+    setShowAddHallForm(false);
   }
 
   const cycleSeatType = (currentType: SeatType): SeatType => {
@@ -411,7 +531,7 @@ const AdminInterface = () => {
           )}
           {hallsError && <p className="block__error">{hallsError}</p>}
           <button className="form__submit-btn" onClick={() => setShowAddHallForm(true)}>Создать зал</button>
-          {showAddHallForm && <AddHallForm onAddHall={toggleAddHall} onCancel={toggleAddHall} />}
+          {showAddHallForm && <AddHallForm onAddHall={toggleAddHall} onCancel={() => setShowAddHallForm(false)} />}
         </div>}
       </div>
 

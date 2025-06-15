@@ -3,7 +3,7 @@ import BackendAPI from "../../api/BackendAPI";
 import '../styles/Forms.css'
 
 type AddFilmProps = {
-  onAddFilm: () => void;
+  onAddFilm: (updatedFilms: { id: number; film_name: string; film_duration: number; film_description: string; film_origin: string; film_poster: string; }[]) => void;
   onCancel: () => void;
 }
 
@@ -22,8 +22,8 @@ const AddFilmForm: React.FC<AddFilmProps> = ({ onAddFilm, onCancel }) => {
       if (filmName === '') {
         throw new Error('Укажите название фильма')
       }
-      if (isNaN(duration) || duration === 0) {
-        throw new Error('Продолжительность фильма не может быть равна 0')
+      if (isNaN(duration) || duration <= 0) {
+        throw new Error('Продолжительность фильма не может быть меньше или равна 0')
       }
       if (description === '') {
         throw new Error('Укажите описание фильма')
@@ -34,8 +34,10 @@ const AddFilmForm: React.FC<AddFilmProps> = ({ onAddFilm, onCancel }) => {
       if (!poster) {
         throw new Error('Необходимо загрузить постер (формат PNG, размер не более 3Мб)')
       }
-      await BackendAPI.addFilm(filmName.trim(), duration, description.trim(), origin.trim(), poster)
-      onAddFilm()
+      const result = await BackendAPI.addFilm(filmName.trim(), duration, description.trim(), origin.trim(), poster)
+      if (result && result.films) {
+        onAddFilm(result.films);
+      }
     } catch (error) {
       setError((error as Error).message);
     }
@@ -116,4 +118,4 @@ const AddFilmForm: React.FC<AddFilmProps> = ({ onAddFilm, onCancel }) => {
   );
 }
 
-export default AddFilmForm; 
+export default AddFilmForm;

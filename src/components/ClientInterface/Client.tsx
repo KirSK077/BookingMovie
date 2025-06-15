@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import BackendAPI from '../../api/BackendAPI';
 import '../styles/Client.css';
-import QRCreator from '../QrCreator/QRCreatorWrapper';
+import QRCreator from '../../assets/QrCreator/QRCreatorWrapper';
 
 type Hall = {
   id: number;
@@ -59,7 +59,7 @@ const ClientInterface = () => {
 
   const [activeDate, setActiveDate] = useState(new Date());
   const [firsDateInArray, setFirstDateInArray] = useState(new Date())
-  const [activeDateId, setActiveDateId] = useState<number | null>(null)
+  const [activeDateId, setActiveDateId] = useState<number>(0)
   
   const [filmName, setFilmName] = useState('');
   const [hallIndex, setHallIndex] = useState<number | null>(null);

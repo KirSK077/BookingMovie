@@ -3,7 +3,7 @@ import BackendAPI from "../../api/BackendAPI";
 import "../styles/Forms.css"
 
 type AddHallProps = {
-  onAddHall: () => void;
+  onAddHall: (updatedHalls: { id: number; hall_name: string; hall_rows: number; hall_places: number; hall_config: string[][]; hall_price_standart: number; hall_price_vip: number; hall_open: number; }[]) => void;
   onCancel: () => void;
 }
 
@@ -15,8 +15,10 @@ const AddHallForm: React.FC<AddHallProps> = ({ onAddHall, onCancel }) => {
     e.preventDefault()
 
     try {
-      await BackendAPI.addHall(hallName.trim())
-      onAddHall();
+      const result = await BackendAPI.addHall(hallName.trim())
+      if (result && result.halls) {
+        onAddHall(result.halls);
+      }
     } catch (error) {
       setError(`Ошибка добавления зала: ${(error as Error).message}`);
     }
